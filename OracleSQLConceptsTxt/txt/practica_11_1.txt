@@ -1,0 +1,80 @@
+
+
+
+create view employees_vu as
+select employee_id, last_name employee, department_id 
+from employees
+;
+
+describe employees_vu
+
+select *
+from employees_vu
+;
+
+
+select employee, department_id
+from employees_vu
+;
+
+create view dept50 as
+select employee_id empno, last_name employee, department_id deptno
+from employees
+where department_id = 50
+with check option constraint emp_dept_50_only
+;
+
+
+describe dept50;
+
+
+
+select *
+from dept50
+;
+
+
+update dept50
+set deptno = 80
+where employee = 'Matos'
+;
+Error SQL: ORA-01402: violación de la cláusula WHERE en la vista WITH CHECK OPTION
+01402. 00000 -  "view WITH CHECK OPTION where-clause violation"
+
+
+create sequence dept_id_seq
+increment by 10
+start with 200
+maxvalue 1000
+;
+
+ insert into dept
+ values(dept_id_seq.nextval, 'Oscar')
+ ;
+
+
+
+ insert into dept
+ values(dept_id_seq.nextval, 'Education')
+ ;
+
+
+select *
+from dept
+;
+
+
+create index index_fk
+on dept(name)
+;
+
+
+create synonym emp
+for employees
+;
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+select l.location_id, l.street_address, l.city, l.state_province, c.country_name
+
+from locations l 
+natural join countries c
+;
+
+
+select e.last_name, department_id, d.department_name
+
+from employees e
+natural join departments d
+;
+
+select e.last_name, e.job_id, e.department_id, d.department_name
+from employees e join departments d
+on (e.department_id = d.department_id )
+join locations l
+on (d.location_id = l.location_id)
+where LOWER(l.city) ='toronto'
+;
+
+select e.last_name Employee, e.employee_id Emp#, m.last_name Manager, m.employee_id Mgr# 
+from employees e join employees m
+on (e.manager_id = m.employee_id)
+;
+
+select e.last_name Employee, e.employee_id Emp#, m.last_name Manager, m.employee_id Mgr# 
+from employees e full outer join employees m
+on (e.manager_id = m.employee_id)
+order by e.employee_id
+;
+
+
+
+select e.department_id DEPARTMENT, e.last_name EMPLOYEE, d.last_name colleague
+from employees e join employees d
+on (e.department_id = d.department_id)
+where e.employee_id != d.employee_id
+;
+
+
+desc job_grades;
+
+
+select e.last_name, e.job_id, d.department_name, e.salary, g.grade_level
+from employees e join departments d
+on (e.department_id = d.department_id)
+join job_grades g
+on (e.salary between g.lowest_sal AND g.highest_sal)
+;
+
+
+
+select e.last_name, e.hire_date
+from employees e join employees obj
+on (obj.last_name = 'Davies')
+where obj.hire_date < e.hire_date
+;
+
+
+select e.last_name, e.hire_date, e.manager_id, obj.last_name Boss
+from employees e join employees obj
+on (e.manager_id = obj.employee_id)
+where e.hire_date < obj.hire_date
+;
+
+
+

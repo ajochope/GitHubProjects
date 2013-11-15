@@ -1,0 +1,32 @@
+
+
+CREATE TABLE my_employee
+  (id  NUMBER(4) CONSTRAINT my_employee_id_nn NOT NULL,
+   last_name VARCHAR2(25),
+   first_name VARCHAR2(25),
+   userid  VARCHAR2(8),
+   salary  NUMBER(9,2));
+
+
+
+describe my_employee
+
+
+insert into my_employee
+values(1,'Patel','Ralph','rpatel',895)
+;
+
+
+insert into my_employee (id, last_name, first_name, userid, salary)
+values(2,'Dancs','Betty','bdancs',860)
+;
+
+
+insert into my_employee
+values(&Id,'&lastname','&name','&userid',&salary)
+;
+
+select *
+from my_employee
+;
+

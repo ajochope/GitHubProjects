@@ -1,0 +1,22 @@
+
+
+
+describe DEPT
+
+select * from DEPT;
+
+insert into DEPT values(2, 'paco');  
+
+
+create table DEPT
+   (	
+      ID NUMBER(7) PRIMARY KEY, 
+      NAME VARCHAR2(25)
+    )
+  ;
+
+insert into DEPT
+  select department_id, department_name
+  from departments
+  ;
+

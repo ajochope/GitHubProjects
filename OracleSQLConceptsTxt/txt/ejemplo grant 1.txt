@@ -1,0 +1,30 @@
+con ora 1
+
+
+drop table telefono;
+CREATE TABLE TELEFONO 
+   (	telefono_ID NUMBER(2,0) primary key, 
+	tipo VARCHAR2(10 ) NOT NULL, 
+	NUMERO VARCHAR2(10 )  NOT NULL );
+  insert into telefono values(1, 'fijo', '911111111');
+  insert into telefono values(2, 'fijo', '912222222');
+  insert into telefono values(3, 'movil', '626111111');
+  SELECT * FROM TELEFONO;
+  grant select, references on telefono to ora21;
+  commit;
+
+
+con ora21
+
+drop table persona;
+CREATE TABLE PERSONA
+   (	ID NUMBER(2,0) , 
+	NOMBRE VARCHAR2(10 ) NOT NULL, 
+	TELEFONO_ID NUMBER(2,0 ) not null
+         references ora1.telefono(telefono_ID)  , 
+	 PRIMARY KEY (ID) );
+   insert into telefono values(1, 'fijo', '912342345');
+
+
+select * from ora1.telefono;
+commit;

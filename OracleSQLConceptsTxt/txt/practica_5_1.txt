@@ -1,0 +1,30 @@
+
+SELECT 
+ROUND(MAX(salary),2) Maximun,
+ROUND(MIN(salary),2) Minimun,
+ROUND(sum(salary),2) "Sum", 
+ROUND(AVG(salary),2) Average
+from employees
+
+;
+
+
+SELECT job_id,
+ROUND(MAX(salary),2) Maximun,
+ROUND(MIN(salary),2) Minimun,
+ROUND(sum(salary),2) "Sum", 
+ROUND(AVG(salary),2) Average
+from employees
+GROUP BY job_id
+
+;
+
+
+SELECT job_id,
+count(job_id)
+from employees
+GROUP BY job_id
+
+;
+
+

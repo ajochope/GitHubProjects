@@ -1,0 +1,30 @@
+select sysdate
+from dual;
+
+
+SELECT first_name "Nombre", 
+last_name "Apellido", 
+salary "Salario", 
+salary + ROUND(salary *0.155) "New Salary"
+from employees
+;
+
+SELECT first_name "Nombre", 
+last_name "Apellido", 
+salary "Salario", 
+salary + ROUND(salary *0.155) "New Salary",
+ROUND(salary *0.155) "Increase"
+from employees
+;
+
+
+SELECT 
+INITCAP(last_name) "Apellido",
+length (last_name)
+from employees
+WHERE last_name LIKE 'J%' or 
+last_name LIKE 'A%' or 
+last_name LIKE 'M%' 
+;
+
+

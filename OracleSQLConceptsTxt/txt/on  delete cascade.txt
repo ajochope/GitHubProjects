@@ -1,0 +1,62 @@
+ 
+
+Sin on delete on cascade
+
+CREATE TABLE TELEFONO 
+   (	telefono_ID NUMBER(2,0), 
+	tipo VARCHAR2(10 ) NOT NULL, 
+	NUMERO VARCHAR2(10 )  NOT NULL , 
+CREATE TABLE PERSONA
+   (	ID NUMBER(2,0), 
+	NOMBRE VARCHAR2(10 ) NOT NULL, 
+	TELEFONO_ID NUMBER(2,0 ) not null
+         references telefono(telefono_ID)  , 
+	 PRIMARY KEY (ID) );
+   insert into telefono values(1, 'fijo', '912342345');
+   insert into persona values(1, 'pepe', 1);
+  
+Si hago
+
+   delete from persona where id=1;
+
+solo se elimina el registro de persona y nada en telefono
+
+Si hago
+   delete from telefono where telefono_id=1;
+sale un error de integridad de la foreign key
+
+Pongo ahora on delete cascade:
+references telefono(telefono_ID)  ON DELETE CASCADE , 
+
+Si hago
+   delete from persona where id=1;
+solo se elimina el registro de persona y nada en telefono. Lo mismo que antes
+
+Si hago
+   delete from telefono where telefono_id=1;
+se borran los dos registros de las dos tablas
+
+Como vemos la idea es que las tablas se queden integras
+
+
+Aqui esta todo el sql para jugar:
+drop table  persona;
+drop table telefono;
+CREATE TABLE TELEFONO 
+   (	telefono_ID NUMBER(2,0), 
+	tipo VARCHAR2(10 ) NOT NULL, 
+	NUMERO VARCHAR2(10 )  NOT NULL , 
+	 PRIMARY KEY (telefono_ID)  );
+  CREATE TABLE PERSONA
+   (	ID NUMBER(2,0), 
+	NOMBRE VARCHAR2(10 ) NOT NULL, 
+	TELEFONO_ID NUMBER(2,0 ) not null references telefono(telefono_ID)   ON DELETE CASCADE, 
+	 PRIMARY KEY (ID) );
+   insert into telefono values(1, 'fijo', '912342345');
+   insert into persona values(1, 'pepe', 1);
+      insert into persona values(2, 'paco', 1);
+   select * from persona;
+   select * from telefono;
+     delete from telefono where telefono_id=1;
+         select * from persona;
+   select * from telefono;

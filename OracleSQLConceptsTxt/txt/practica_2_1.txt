@@ -1,0 +1,106 @@
+Practica 2-1
+
+SELECT last_name "Apellido", salary "Sueldo"
+from employees 
+WHERE salary > 12000;
+
+
+SELECT last_name "Apellido", department_id "Departamento"
+from employees 
+WHERE employee_id = 176;
+
+
+SELECT last_name "Apellido", salary "Salario"
+from employees 
+WHERE salary < 5000 OR salary > 12000;
+
+SELECT last_name "Apellido", job_id "Cargo", hire_date "Fecha contrato"
+from employees 
+WHERE last_name IN ('Matos' , 'Taylor');
+
+
+SELECT last_name "Apellido", department_id "Depto"
+from employees 
+WHERE department_id IN (20 , 50)
+order by first_name;
+
+
+SELECT last_name "Apellido", department_id "Depto"
+from employees 
+WHERE department_id IN (20, 50)
+order by last_name ASC;
+
+
+SELECT last_name "Employee", salary " Monthly Salary"
+from employees 
+WHERE department_id IN (20, 50) 
+      and salary >5000 and salary < 12000
+order by last_name ASC;
+
+
+SELECT last_name "Employee", hire_date " Fecha"
+from employees 
+WHERE hire_date LIKE '%94';
+
+
+
+SELECT last_name "Employee", job_id "Lugar"
+from employees 
+WHERE manager_id   IS null;
+
+
+SELECT last_name "Employee", salary "Salario", commission_pct "comision"
+from employees 
+WHERE commission_pct  IS NOT null
+ORDER BY commission_pct, salary  DESC ;
+
+
+SELECT last_name "Employee", salary "Salario"
+from employees 
+WHERE salary > &salary;
+
+
+SELECT employee_id "ID Employee", last_name "Apellido", salary "Salario",
+department_id "Departamento", &&idsuper
+from employees 
+WHERE MANAGER_ID = &idsuper;
+
+
+
+SELECT last_name "Apellido"
+from employees 
+WHERE last_name LIKE '__a%';
+
+
+SELECT 
+last_name "Apellido"
+from employees
+WHERE last_name LIKE '%a%' and 
+last_name LIKE 'e%'
+;
+
+
+
+
+SELECT 
+last_name "Apellido", job_id "Trabajo",salary "Sueldo"
+from employees
+WHERE job_id IN ( 'MK_REP' , 'ST_CLERK') and
+salary != 3500 and
+salary != 2500 and
+salary != 7000
+;
+
+
+
+SELECT 
+last_name Apellido,salary Sueldo, commission_pct Comision
+from employees
+WHERE commission_pct = 0.2
+;
+
+
+
+
+
+
